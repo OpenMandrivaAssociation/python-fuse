@@ -34,5 +34,5 @@ Python binding for Fuse (Filesystem in Userspace).
 %files
 %defattr(-,root,root)
 %doc AUTHORS COPYING README.1st README.new_fusepy_api FAQ
-%{python_sitelib}/
+%py_platsitedir/*
 
