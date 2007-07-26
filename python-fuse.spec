@@ -1,6 +1,6 @@
 %define name python-fuse
 %define cvsversion 20070509
-%define version 0.%cvsversion
+%define version 2.5
 %define release %mkrel 1
 
 Name:		%name
