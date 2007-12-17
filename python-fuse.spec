@@ -8,7 +8,6 @@ Summary:	Python binding for Fuse (Filesystem in Userspace)
 URL:		http://fuse.sourceforge.net/wiki/index.php/FusePython
 Source0:	%{name}-cvs%{cvsversion}.tar.bz2
 License:	LGPL
-BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 Group:		System/Libraries
 BuildRequires:	python-devel, fuse-devel
 Requires:	fuse
