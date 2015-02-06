@@ -1,7 +1,7 @@
 %define name python-fuse
 %define cvsversion 20070509
 %define version 2.5
-%define release %mkrel 5
+%define release 6
 
 Name:		%name
 Summary:	Python binding for Fuse (Filesystem in Userspace)
