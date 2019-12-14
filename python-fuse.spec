@@ -5,7 +5,8 @@ Source0:	https://github.com/libfuse/python-fuse/archive/v%{version}/%{name}-%{ve
 License:	LGPL
 BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 Group:		System/Libraries
-BuildRequires:	python-devel, fuse-devel
+BuildRequires:	python-devel
+BuildRequires:  pkgconfig(fuse)
 Requires:	fuse
 Version:	1.0.0
 Release:	1
