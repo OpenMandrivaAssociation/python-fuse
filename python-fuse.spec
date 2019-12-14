@@ -19,10 +19,12 @@ Python 2.x/3.x binding for Fuse 2.x (Filesystem in Userspace).
 
 %build
 %{__python} setup.py build
+%{__python2} setup.py build
 
 %install
 %{__rm} -Rf $RPM_BUILD_ROOT
 %{__python} setup.py install --root $RPM_BUILD_ROOT
+%{__python2} setup.py install --root $RPM_BUILD_ROOT
 
 %clean
 %{__rm} -Rf $RPM_BUILD_ROOT
