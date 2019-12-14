@@ -6,7 +6,6 @@ License:	LGPL
 BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 Group:		System/Libraries
 BuildRequires:	python-devel
-BuildRequires:  python2-devel
 BuildRequires:  pkgconfig(fuse)
 Requires:	fuse
 Version:	1.0.0
@@ -20,19 +19,17 @@ Python 2.x/3.x binding for Fuse 2.x (Filesystem in Userspace).
 
 %build
 %{__python} setup.py build
-%{__python2} setup.py build
 
 %install
 %{__rm} -Rf $RPM_BUILD_ROOT
 %{__python} setup.py install --root $RPM_BUILD_ROOT
-%{__python2} setup.py install --root $RPM_BUILD_ROOT
 
 %clean
 %{__rm} -Rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-%doc AUTHORS COPYING README.1st README.new_fusepy_api FAQ
+%doc AUTHORS COPYING README.md README.new_fusepy_api FAQ
 %py_platsitedir/*
 
 %changelog
