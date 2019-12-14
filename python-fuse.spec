@@ -6,6 +6,7 @@ License:	LGPL
 BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 Group:		System/Libraries
 BuildRequires:	python-devel
+BuildRequires:  python2-devel
 BuildRequires:  pkgconfig(fuse)
 Requires:	fuse
 Version:	1.0.0
@@ -33,8 +34,6 @@ Python 2.x/3.x binding for Fuse 2.x (Filesystem in Userspace).
 %defattr(-,root,root)
 %doc AUTHORS COPYING README.1st README.new_fusepy_api FAQ
 %py_platsitedir/*
-
-
 
 %changelog
 * Tue Sep 15 2009 Thierry Vignaud <tv@mandriva.org> 2.5-5mdv2010.0
