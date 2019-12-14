@@ -1,25 +1,20 @@
-%define name python-fuse
-%define cvsversion 20070509
-%define version 2.5
-%define release 6
-
-Name:		%name
-Summary:	Python binding for Fuse (Filesystem in Userspace)
-URL:		http://fuse.sourceforge.net/wiki/index.php/FusePython
-Source0:	%{name}-cvs%{cvsversion}.tar.bz2
+Name:		python-fuse
+Summary:	Python 2.x/3.x bindings for libfuse 2.x
+URL:		https://github.com/libfuse/python-fuse
+Source0:	https://github.com/libfuse/python-fuse/archive/v%{version}/%{name}-%{version}.tar.gz
 License:	LGPL
 BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 Group:		System/Libraries
 BuildRequires:	python-devel, fuse-devel
 Requires:	fuse
-Version:	%version
-Release:	%release
+Version:	1.0.0
+Release:	1
 
 %description
-Python binding for Fuse (Filesystem in Userspace).
+Python 2.x/3.x binding for Fuse 2.x (Filesystem in Userspace).
 
 %prep
-%setup -q -n %{name}-cvs%{cvsversion}
+%setup -q
 
 %build
 %{__python} setup.py build
