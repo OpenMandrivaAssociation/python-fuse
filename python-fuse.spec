@@ -1,6 +1,7 @@
 %define module fuse
 %define oname fuse_python
-%bcond_without test
+# disable test for abf
+%bcond_with test
 
 Name:		python-fuse
 Version:	1.0.9
