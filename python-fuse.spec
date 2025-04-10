@@ -30,6 +30,7 @@ Python 2.x/3.x binding for Fuse 2.x (Filesystem in Userspace).
 %package -n %{name}-doc
 Summary:        Documentation files for %name
 Group:          Documentation/Other
+BuildArch: noarch
 
 %description -n %{name}-doc
 HTML Documentation and examples for %name.
