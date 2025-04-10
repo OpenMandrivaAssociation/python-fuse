@@ -1,59 +1,66 @@
+%define module fuse
+%define oname fuse_python
+%bcond_without test
+
 Name:		python-fuse
+Version:	1.0.9
+Release:	1
 Summary:	Python 2.x/3.x bindings for libfuse 2.x
+License:	LGPL-2.1-only
 URL:		https://github.com/libfuse/python-fuse
 Source0:	https://github.com/libfuse/python-fuse/archive/v%{version}/%{name}-%{version}.tar.gz
-License:	LGPL
-BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 Group:		System/Libraries
-BuildRequires:	python-devel
+BuildSystem: python
+
+BuildRequires:	python
+BuildRequires:	pkgconfig(python3)
 BuildRequires:  pkgconfig(fuse)
+BuildRequires:	python%{pyver}dist(pip)
+BuildRequires:	python%{pyver}dist(setuptools)
+BuildRequires:	python%{pyver}dist(wheel)
+%if %{with test}
+BuildRequires:	python%{pyver}dist(pytest)
+%endif
 Requires:	fuse
-Version:	1.0.0
-Release:	1
+Suggests: %{name}-doc = %{version}-%{release}
 
 %description
 Python 2.x/3.x binding for Fuse 2.x (Filesystem in Userspace).
 
+%package -n %{name}-doc
+Summary:        Documentation files for %name
+Group:          Documentation/Other
+
+%description -n %{name}-doc
+HTML Documentation and examples for %name.
+
 %prep
-%setup -q
+%autosetup -n %{name}-%{version} -p1
+# Remove bundled egg-info
+rm -rf %{oname}.egg-info
 
 %build
-%{__python} setup.py build
+export CFLAGS="%{optflags}"
+%py3_build
 
 %install
-%{__rm} -Rf $RPM_BUILD_ROOT
-%{__python} setup.py install --root $RPM_BUILD_ROOT
+%py3_install
 
-%clean
-%{__rm} -Rf $RPM_BUILD_ROOT
+%if %{with test}
+%check
+pip install -e .[test]
+pytest -v tests/
+%endif
 
 %files
-%defattr(-,root,root)
-%doc AUTHORS COPYING README.md README.new_fusepy_api FAQ
-%py_platsitedir/*
+%{python3_sitearch}/%{module}parts
+%{python3_sitearch}/%{module}.py
+%{python3_sitearch}/%{oname}-%{version}*.*-info
+%license COPYING
+%doc README.md
 
-%changelog
-* Tue Sep 15 2009 Thierry Vignaud <tv@mandriva.org> 2.5-5mdv2010.0
-+ Revision: 442114
-- rebuild
-
-* Sun Dec 28 2008 Funda Wang <fwang@mandriva.org> 2.5-4mdv2009.1
-+ Revision: 320160
-- rebuild for new python
-
-* Wed Jul 23 2008 Thierry Vignaud <tv@mandriva.org> 2.5-3mdv2009.0
-+ Revision: 242410
-- rebuild
-- kill re-definition of %%buildroot on Pixel's request
-
-  + Olivier Blin <oblin@mandriva.com>
-    - restore BuildRoot
-
-* Thu Jul 26 2007 Guillaume Rousse <guillomovitch@mandriva.org> 2.5-1mdv2008.0
-+ Revision: 55847
-- update to new version 2.5
-
-* Wed May 09 2007 Nicolas Vigier <nvigier@mandriva.com> 0.20070509-1mdv2008.0
-+ Revision: 25760
-- Import python-fuse
-
+%files -n %{name}-doc
+%doc README.*
+%doc FAQ
+%doc AUTHORS
+%doc example
