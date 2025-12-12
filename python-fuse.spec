@@ -5,7 +5,7 @@
 
 Name:		python-fuse
 Version:	1.0.9
-Release:	1
+Release:	2
 Summary:	Python 2.x/3.x bindings for libfuse 2.x
 License:	LGPL-2.1-only
 URL:		https://github.com/libfuse/python-fuse
